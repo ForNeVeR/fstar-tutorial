@@ -44,12 +44,14 @@ let checkedRead f =
   if canRead f then read f else raise InvalidRead
 
 
-assume val checkedWrite : filename -> string -> ML unit
+val checkedWrite : filename -> string -> ML unit
 
 // solution here
 //
 //
-
+exception InvalidWrite
+let checkedWrite file text =
+    if canWrite file then write file text else raise InvalidWrite
 
 let dynamicChecking () =
   let v1 = checkedRead tmp in
